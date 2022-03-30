@@ -13,26 +13,25 @@ export class Allergies {
     this.listAllAllergies.set("pollen", 64);
     this.listAllAllergies.set("cats", 128);
 
-    
+
     let scoreTmp:number = this.score;
-    while (scoreTmp > 0){
+
+    while (scoreTmp == 0){
       let aliment:string = getAliment(scoreTmp, this.listAllAllergies)
       let scoreAliemnt = this.listAllAllergies.get(aliment)
       if(scoreAliemnt != null){
          scoreTmp = scoreTmp - scoreAliemnt
         this.listAllergies.set(aliment,  scoreAliemnt);
-        console.log(this.listAllergies)
       }
+     
     }
+    
   }
-  public list(): string[] {
-    let array:string[] = []
-    for (let [key, value] of this.listAllergies) {
-      array.push(key);
-    }
-    console.log(array)
-    return array.reverse();
+
+  public list(): unknown {
+    throw new Error('Remove this statement and implement this function')
   }
+
   public allergicTo(allergen: string): boolean {
     return this.listAllergies.has(allergen)
   }
@@ -40,14 +39,14 @@ export class Allergies {
 function getAliment(score:number, map:Map<string, number>):string{
   let valorAnterior:string = ""
   for (var [key, value] of map) {
-    if(score >= 128) return "cats"
-    if(value == score){
+    
+    if(value = score){
       return key;
-    }
-    else if(value > score){
+    }else if(value > score){
       return valorAnterior;
     }
     valorAnterior = key;
+    
   }
   return "null";
 }
